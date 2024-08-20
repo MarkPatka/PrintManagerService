@@ -5,29 +5,28 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{C7EB05C3-C164-4095-BE38-29F9D987AA17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintManager.Application", "Application\PrintManager.Application\PrintManager.Application.csproj", "{37A981D2-E994-4085-8EF6-013B08706473}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrintManager.Application", "Application\PrintManager.Application\PrintManager.Application.csproj", "{37A981D2-E994-4085-8EF6-013B08706473}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{AB6A656D-8631-4FAA-BC81-4A87FE3E666C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintManager.Domain", "Domain\PrintManager.Domain\PrintManager.Domain.csproj", "{D98F33D9-E58D-4993-B661-55E7630E38C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrintManager.Domain", "Domain\PrintManager.Domain\PrintManager.Domain.csproj", "{D98F33D9-E58D-4993-B661-55E7630E38C2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{96A50611-4BED-4C94-A8F7-19EABE9636DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintManager.Infrastructure", "Infrastructure\PrintManager.Infrastructure\PrintManager.Infrastructure.csproj", "{6C164769-A502-483E-B5F8-1C8E9FC40263}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrintManager.Infrastructure", "Infrastructure\PrintManager.Infrastructure\PrintManager.Infrastructure.csproj", "{6C164769-A502-483E-B5F8-1C8E9FC40263}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{05E1852D-36C7-4129-9EB2-0357CBBC1AC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintManager.Api", "Presentation\PrintManager.Api\PrintManager.Api.csproj", "{0D87B281-7993-4074-9C2A-53FF0FCF4753}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrintManager.Api", "Presentation\PrintManager.Api\PrintManager.Api.csproj", "{0D87B281-7993-4074-9C2A-53FF0FCF4753}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintManager.Contracts", "Presentation\PrintManager.Contracts\PrintManager.Contracts.csproj", "{7556EB0C-5529-4899-B0BA-409832F74253}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintManager.Contracts", "Presentation\PrintManager.Contracts\PrintManager.Contracts.csproj", "{1DE1F6C8-B3C1-4B8B-9531-7E072F783A57}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PrintManagementData", "Infrastructure\PrintManagementData\PrintManagementData.sqlproj", "{B01B6FFE-2FDF-4063-8D8E-C718FF169476}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{37A981D2-E994-4085-8EF6-013B08706473}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -46,16 +45,29 @@ Global
 		{0D87B281-7993-4074-9C2A-53FF0FCF4753}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D87B281-7993-4074-9C2A-53FF0FCF4753}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D87B281-7993-4074-9C2A-53FF0FCF4753}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7556EB0C-5529-4899-B0BA-409832F74253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7556EB0C-5529-4899-B0BA-409832F74253}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7556EB0C-5529-4899-B0BA-409832F74253}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7556EB0C-5529-4899-B0BA-409832F74253}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DE1F6C8-B3C1-4B8B-9531-7E072F783A57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DE1F6C8-B3C1-4B8B-9531-7E072F783A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DE1F6C8-B3C1-4B8B-9531-7E072F783A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DE1F6C8-B3C1-4B8B-9531-7E072F783A57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B01B6FFE-2FDF-4063-8D8E-C718FF169476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B01B6FFE-2FDF-4063-8D8E-C718FF169476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B01B6FFE-2FDF-4063-8D8E-C718FF169476}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B01B6FFE-2FDF-4063-8D8E-C718FF169476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B01B6FFE-2FDF-4063-8D8E-C718FF169476}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B01B6FFE-2FDF-4063-8D8E-C718FF169476}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{37A981D2-E994-4085-8EF6-013B08706473} = {C7EB05C3-C164-4095-BE38-29F9D987AA17}
 		{D98F33D9-E58D-4993-B661-55E7630E38C2} = {AB6A656D-8631-4FAA-BC81-4A87FE3E666C}
 		{6C164769-A502-483E-B5F8-1C8E9FC40263} = {96A50611-4BED-4C94-A8F7-19EABE9636DC}
 		{0D87B281-7993-4074-9C2A-53FF0FCF4753} = {05E1852D-36C7-4129-9EB2-0357CBBC1AC6}
-		{7556EB0C-5529-4899-B0BA-409832F74253} = {05E1852D-36C7-4129-9EB2-0357CBBC1AC6}
+		{1DE1F6C8-B3C1-4B8B-9531-7E072F783A57} = {05E1852D-36C7-4129-9EB2-0357CBBC1AC6}
+		{B01B6FFE-2FDF-4063-8D8E-C718FF169476} = {96A50611-4BED-4C94-A8F7-19EABE9636DC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4EBB820-E48C-477A-BCBB-1633DD3E2749}
 	EndGlobalSection
 EndGlobal
