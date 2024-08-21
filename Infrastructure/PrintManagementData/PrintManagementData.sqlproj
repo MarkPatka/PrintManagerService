@@ -62,7 +62,4 @@
     <Folder Include="dbo\Views" />
     <Folder Include="PublishLocations\" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="PublishLocations\PrintManagementData.publish.xml" />
-  </ItemGroup>
 </Project>
