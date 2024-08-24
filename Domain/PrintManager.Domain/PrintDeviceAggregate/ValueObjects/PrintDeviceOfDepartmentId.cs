@@ -2,15 +2,16 @@
 
 namespace PrintManager.Domain.PrintDeviceAggregate.ValueObjects;
 
-public sealed class PrintDeviceId : ValueObject
+public sealed class PrintDeviceOfDepartmentId : ValueObject
 {
     public Guid Value { get; }
 
-    private PrintDeviceId(Guid value) => Value = value;
+    private PrintDeviceOfDepartmentId(Guid value)
+    {
+        Value = value;
+    }
 
-    public static PrintDeviceId CreateFrom(Guid id) =>
-        new(id);
-    public static PrintDeviceId CreateUnicId() =>
+    public static PrintDeviceOfDepartmentId CreateUnicId() =>
         new(Guid.NewGuid());
 
     public override IEnumerable<object> GetEqualityComponents()
@@ -18,3 +19,4 @@ public sealed class PrintDeviceId : ValueObject
         yield return Value;
     }
 }
+

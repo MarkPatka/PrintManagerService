@@ -2,29 +2,43 @@
 using PrintManager.Domain.DepartmentAggregate.ValueObjects;
 using PrintManager.Domain.PrintDeviceAggregate.Enumerations;
 using PrintManager.Domain.PrintDeviceAggregate.ValueObjects;
-using System.Net.NetworkInformation;
 
 namespace PrintManager.Domain.PrintDeviceAggregate;
 
 public sealed class PrintDevice : AggregateRoot<PrintDeviceId>
 {
-    private readonly List<PhysicalAddress>? MACs = [];
-
     public string Name { get; }
     
     public ConnectionType ConnectionType { get; }
 
+    public MACListId MACids { get; }
+
     public DepartmentId DepartmentId { get; }
 
-    public IReadOnlyList<PhysicalAddress>? MACAddresses => MACs?.AsReadOnly();
+    public PrintDeviceOfDepartmentId PrintDeviceOfDepartment { get; }
 
-    private PrintDevice(PrintDeviceId id, string name, ConnectionType connection) 
+#pragma warning disable CS8618
+    private PrintDevice() { }
+#pragma warning disable CS8618
+
+    private PrintDevice(
+        PrintDeviceId id, 
+        string name, 
+        ConnectionType connection,
+        DepartmentId departmentId,
+        PrintDeviceOfDepartmentId printDeviceOfDepartment,
+        MACListId macIds) 
         : base(id)
     {
         Name = name;
         ConnectionType = connection;
+        MACids = macIds;
+        DepartmentId = departmentId;
+        PrintDeviceOfDepartment = printDeviceOfDepartment;
     }
     
-    public static PrintDevice Create(string name, ConnectionType connection) =>
-        new(PrintDeviceId.CreateUnicId(), name, connection);
+    public static PrintDevice Create(string name, 
+        ConnectionType connection,  DepartmentId departmentId,
+        PrintDeviceOfDepartmentId printDeviceOfDepartment, MACListId macIds) =>
+            new(PrintDeviceId.CreateUnicId(), name, connection, departmentId, printDeviceOfDepartment, macIds);
 }

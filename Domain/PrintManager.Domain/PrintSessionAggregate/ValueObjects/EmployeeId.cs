@@ -2,18 +2,18 @@
 
 namespace PrintManager.Domain.PrintSessionAggregate.ValueObjects;
 
-public sealed class PrintSessionId : ValueObject
+public sealed class EmployeeId : ValueObject
 {
     public Guid Value { get; }
 
-    private PrintSessionId(Guid value)
+    private EmployeeId(Guid value)
     {
         Value = value;
     }
 
-    public static PrintSessionId CreateFrom(Guid id) =>
+    public static EmployeeId CreateFrom(Guid id) =>
         new(id);
-    public static PrintSessionId CreateUnicId() =>
+    public static EmployeeId CreateUnic() =>
         new(Guid.NewGuid());
 
     public override IEnumerable<object> GetEqualityComponents()

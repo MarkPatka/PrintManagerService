@@ -10,7 +10,8 @@ public sealed class DepartmentId : ValueObject
     {
         Value = value;
     }
-
+    public static DepartmentId CreateFrom(Guid id) =>
+        new(id);
     public static DepartmentId CreateUnicId() =>
         new(Guid.NewGuid());
 
