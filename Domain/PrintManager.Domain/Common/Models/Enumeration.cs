@@ -13,6 +13,10 @@ public abstract class Enumeration : IComparable
 
     public string Description { get; } = string.Empty;
 
+#pragma warning disable CS8618
+    protected Enumeration() { }
+#pragma warning disable CS8618
+
     protected Enumeration(int code, string value, string description = "") => 
         (_code, _value, Description) = (code, value, description);
 
