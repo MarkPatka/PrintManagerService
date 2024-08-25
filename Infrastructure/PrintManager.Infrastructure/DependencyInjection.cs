@@ -10,7 +10,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
-        ///...
+        AddPersistence(services);
         return services;
     }
 
@@ -19,7 +19,12 @@ public static class DependencyInjection
         services.AddDbContextPool<PrintManagementDbContext>(options => 
             options.UseSqlServer());
 
-        services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+        services.AddScoped<IEmployeeRepository, EmployeeRepository>()
+            .AddScoped<IEmployeeRepository, EmployeeRepository>()
+            .AddScoped<IDepartmentRepository, DepartmentRepository>()
+            .AddScoped<IPrintDeviceRepository, PrintDeviceRepository>()
+            .AddScoped<IPrintSessionRepository, PrintSessionRepository>();
+
         return services;
     }
 }

@@ -1,18 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PrintManager.Application.Common.Interfaces.Persistence;
-using PrintManager.Domain.DepartmentAggregate.Entities;
-using PrintManager.Domain.DepartmentAggregate.ValueObjects;
 using PrintManager.Infrastructure.Persistence.DBContexts;
+using PrintManager.Domain.PrintSessionAggregate;
+using PrintManager.Domain.PrintSessionAggregate.ValueObjects;
 
 namespace PrintManager.Infrastructure.Persistence.Repositories;
 
-public class EmployeeRepository
-    : GenericRepository<Employee, EmployeeId>,
-    IEmployeeRepository
+public class PrintSessionRepository 
+    : GenericRepository<PrintSession, PrintSessionId>,
+    IPrintSessionRepository
 {
     private readonly IDbContextFactory<PrintManagementDbContext> _dbContextFactory;
 
-    public EmployeeRepository(IDbContextFactory<PrintManagementDbContext> dbContextFactory) 
+    public PrintSessionRepository(IDbContextFactory<PrintManagementDbContext> dbContextFactory)
         : base(dbContextFactory.CreateDbContext())
     {
         _dbContextFactory = dbContextFactory;
