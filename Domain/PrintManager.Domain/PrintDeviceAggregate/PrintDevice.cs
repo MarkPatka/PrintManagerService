@@ -1,44 +1,34 @@
 ﻿using PrintManager.Domain.Common.Models;
 using PrintManager.Domain.DepartmentAggregate.ValueObjects;
+using PrintManager.Domain.PrintDeviceAggregate.Entities;
 using PrintManager.Domain.PrintDeviceAggregate.Enumerations;
 using PrintManager.Domain.PrintDeviceAggregate.ValueObjects;
+using System.Net.NetworkInformation;
 
 namespace PrintManager.Domain.PrintDeviceAggregate;
 
 public sealed class PrintDevice : AggregateRoot<PrintDeviceId>
 {
-    public string Name { get; }
-    
+    private readonly List<MAC> _macs = [];
+
+    public string Name { get; }    
     public ConnectionType ConnectionType { get; }
 
-    public MACListId MACids { get; }
-
-    public DepartmentId DepartmentId { get; }
-
-    public PrintDeviceOfDepartmentId PrintDeviceOfDepartment { get; }
+    public DepartmentId DepartmentId { get; private set; }
+    public DepartmentPrintDeviceId PrintDeviceOfDepartment { get; private set; }
+    public IReadOnlyList<MAC> MACs => _macs.AsReadOnly();
 
 #pragma warning disable CS8618
     private PrintDevice() { }
 #pragma warning disable CS8618
 
-    private PrintDevice(
-        PrintDeviceId id, 
-        string name, 
-        ConnectionType connection,
-        DepartmentId departmentId,
-        PrintDeviceOfDepartmentId printDeviceOfDepartment,
-        MACListId macIds) 
+    private PrintDevice(PrintDeviceId id, string name, ConnectionType connection) 
         : base(id)
     {
         Name = name;
         ConnectionType = connection;
-        MACids = macIds;
-        DepartmentId = departmentId;
-        PrintDeviceOfDepartment = printDeviceOfDepartment;
     }
     
-    public static PrintDevice Create(string name, 
-        ConnectionType connection,  DepartmentId departmentId,
-        PrintDeviceOfDepartmentId printDeviceOfDepartment, MACListId macIds) =>
-            new(PrintDeviceId.CreateUnicId(), name, connection, departmentId, printDeviceOfDepartment, macIds);
+    public static PrintDevice Create(string name, ConnectionType connection) =>
+            new(PrintDeviceId.CreateUnicId(), name, connection);
 }

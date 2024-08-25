@@ -1,6 +1,6 @@
 ﻿using PrintManager.Domain.Common.Models;
 
-namespace PrintManager.Domain.PrintSessionAggregate.ValueObjects;
+namespace PrintManager.Domain.DepartmentAggregate.ValueObjects;
 
 public sealed class EmployeeId : ValueObject
 {

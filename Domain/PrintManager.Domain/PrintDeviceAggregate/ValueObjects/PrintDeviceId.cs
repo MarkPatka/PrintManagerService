@@ -6,10 +6,14 @@ public sealed class PrintDeviceId : ValueObject
 {
     public Guid Value { get; }
 
-    private PrintDeviceId(Guid value) => Value = value;
+    private PrintDeviceId(Guid value)
+    {
+        Value = value;
+    }
 
     public static PrintDeviceId CreateFrom(Guid id) =>
         new(id);
+
     public static PrintDeviceId CreateUnicId() =>
         new(Guid.NewGuid());
 

@@ -2,16 +2,18 @@
 
 namespace PrintManager.Domain.PrintDeviceAggregate.ValueObjects;
 
-public sealed class MACListId : ValueObject
+public sealed class MACId : ValueObject
 {
     public Guid Value { get; }
 
-    private MACListId(Guid value)
+    private MACId(Guid value)
     {
         Value = value;
     }
+    public static MACId CreateFrom(Guid id) =>
+        new(id);
 
-    public static MACListId CreateUnicId() =>
+    public static MACId CreateUnicId() =>
         new(Guid.NewGuid());
 
     public override IEnumerable<object> GetEqualityComponents()
