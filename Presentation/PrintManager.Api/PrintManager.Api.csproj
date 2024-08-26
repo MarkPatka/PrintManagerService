@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ErrorOr" Version="2.0.1" />
+    <PackageReference Include="Mapster" Version="7.4.0" />
+    <PackageReference Include="Mapster.DependencyInjection" Version="1.0.1" />
+    <PackageReference Include="MediatR" Version="12.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
       <PrivateAssets>all</PrivateAssets>
@@ -19,6 +23,11 @@
     <ProjectReference Include="..\PrintManager.Contracts\PrintManager.Contracts.csproj" />
     <ProjectReference Include="..\..\Application\PrintManager.Application\PrintManager.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\PrintManager.Infrastructure\PrintManager.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\Errors\" />
+    <Folder Include="Common\Http\" />
   </ItemGroup>
 
 </Project>

@@ -1,16 +1,21 @@
+using PrintManager.Api;
 using PrintManager.Application;
 using PrintManager.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 {
-    builder.Services.AddControllers();
-    builder.Services.AddApplication();
-    builder.Services.AddInfrastructure();
+    builder.Services
+        .AddPresentation()
+        .AddApplication()
+        .AddInfrastructure(
+            builder.Configuration,
+            builder.Configuration.GetSection("Database"));
+
+
 }
 
 var app = builder.Build();
-{
-    
+{    
     app.UseExceptionHandler("/error");
     app.UseHttpsRedirection();
     app.MapControllers();
