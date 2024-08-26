@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PrintManager.Domain.DepartmentAggregate.Entities;
 using PrintManager.Domain.PrintSessionAggregate;
 using PrintManager.Domain.PrintSessionAggregate.Enumerations;
 using PrintManager.Domain.PrintSessionAggregate.ValueObjects;
@@ -34,7 +35,15 @@ public class PrintSessionConfigurations : IEntityTypeConfiguration<PrintSession>
         builder.Property(s => s.SessionName)
             .HasMaxLength(100);
 
-        builder.OwnsOne(s => s.PrintDevice);
-        builder.OwnsOne(s => s.PrintingEmployee);
+        //builder.HasOne(s => s.PrintDevice).WithOne()
+        //    .HasForeignKey<DepartmentPrintDevice>(p => p.Id);
+        //builder.Navigation(s => s.PrintDevice).IsRequired();
+        
+        //builder.HasOne(s => s.PrintingEmployee).WithOne()
+        //    .HasForeignKey<Employee>(p => p.Id);
+        //builder.Navigation(s => s.PrintingEmployee).IsRequired();
+
+        //builder.OwnsOne(s => s.PrintDevice);
+        //builder.OwnsOne(s => s.PrintingEmployee);
     }
 }

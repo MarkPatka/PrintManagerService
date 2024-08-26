@@ -24,7 +24,7 @@ public class DepartmentConfigurations : IEntityTypeConfiguration<Department>
 
             devb.WithOwner().HasForeignKey("DepartmentId");
 
-            devb.HasKey(nameof(DepartmentPrintDevice.Id),"Id", "DepartmentId");
+            devb.HasKey("Id", "DepartmentId");
 
             devb.Property(d => d.Id)
                 .HasColumnName("DepartmentDeviceId")
@@ -52,7 +52,6 @@ public class DepartmentConfigurations : IEntityTypeConfiguration<Department>
         });
         builder.Navigation(d => d.PrintDevices).Metadata.SetField("_printDevices");
         builder.Navigation(d => d.PrintDevices).UsePropertyAccessMode(PropertyAccessMode.Field);
-
     }
 
     private void ConfigureEmplyeesTable(EntityTypeBuilder<Department> builder)
@@ -63,7 +62,7 @@ public class DepartmentConfigurations : IEntityTypeConfiguration<Department>
             
             eb.WithOwner().HasForeignKey("DepartmentId");
 
-            eb.HasKey(nameof(Employee.Id), "Id", "DepartmentId");
+            eb.HasKey("Id", "DepartmentId");
 
             eb.Property(e => e.Id)
                 .HasColumnName("EmployeeId")

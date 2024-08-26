@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using PrintManager.Domain.DepartmentAggregate;
+using PrintManager.Domain.DepartmentAggregate.Entities;
+using PrintManager.Domain.DepartmentAggregate.ValueObjects;
 using PrintManager.Domain.PrintDeviceAggregate;
 using PrintManager.Domain.PrintDeviceAggregate.Entities;
 using PrintManager.Domain.PrintDeviceAggregate.Enumerations;
@@ -24,7 +27,7 @@ public class PrintDeviceConfigurations : IEntityTypeConfiguration<PrintDevice>
             
             mb.WithOwner().HasForeignKey("PrintDeviceId");
 
-            mb.HasKey(nameof(MAC.Id), "Id", "PrintDeviceId");
+            mb.HasKey(m => m.Id);
 
             mb.Property(m => m.Id)
                 .ValueGeneratedNever()
