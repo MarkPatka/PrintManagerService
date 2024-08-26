@@ -4,7 +4,7 @@ namespace PrintManager.Domain.PrintDeviceAggregate.ValueObjects;
 
 public sealed class PrintDeviceId : ValueObject
 {
-    public Guid Value { get; }
+    public Guid Value { get; private set; }
 
     private PrintDeviceId(Guid value)
     {

@@ -4,7 +4,7 @@ namespace PrintManager.Domain.PrintSessionAggregate.ValueObjects;
 
 public sealed class PrintSessionId : ValueObject
 {
-    public Guid Value { get; }
+    public Guid Value { get; private set; }
 
     private PrintSessionId(Guid value)
     {

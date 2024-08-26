@@ -4,7 +4,7 @@ namespace PrintManager.Domain.PrintDeviceAggregate.ValueObjects;
 
 public sealed class MACId : ValueObject
 {
-    public Guid Value { get; }
+    public Guid Value { get; private set; }
 
     private MACId(Guid value)
     {

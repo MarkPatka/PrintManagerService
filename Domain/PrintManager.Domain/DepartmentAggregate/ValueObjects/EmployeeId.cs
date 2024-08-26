@@ -4,7 +4,7 @@ namespace PrintManager.Domain.DepartmentAggregate.ValueObjects;
 
 public sealed class EmployeeId : ValueObject
 {
-    public Guid Value { get; }
+    public Guid Value { get; private set; }
 
     private EmployeeId(Guid value)
     {

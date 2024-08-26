@@ -7,10 +7,13 @@ namespace PrintManager.Domain.DepartmentAggregate.Entities;
 public sealed class DepartmentPrintDevice : Entity<DepartmentPrintDeviceId>
 {
     public string InnerName { get; }
+
     public int SerialNumber { get; }
+
     public bool IsDefaultDevice { get; }
 
     public PrintDeviceId DeviceId { get; private set; }
+    public DepartmentId DepartmentId { get; private set; }
 
 #pragma warning disable CS8618
     private DepartmentPrintDevice() { }

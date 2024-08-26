@@ -12,8 +12,8 @@ public sealed class PrintSession : AggregateRoot<PrintSessionId>
 
     public SessionStatus SessionStatus { get; }
 
-    public DepartmentPrintDevice PrintDevice { get; private set; }
-    public Employee PrintingEmployee { get; private set; }
+    //public DepartmentPrintDevice PrintDevice { get; private set; }
+    //public Employee PrintingEmployee { get; private set; }
 
 #pragma warning disable CS8618
     private PrintSession() { }
