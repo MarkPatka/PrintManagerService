@@ -6,13 +6,13 @@ using PrintManager.Infrastructure.Persistence.DBContexts;
 
 namespace PrintManager.Infrastructure.Persistence.Repositories;
 
-public class Installationrepository :
+public class InstallationRepository :
     GenericRepository<Installation, InstallationId>,
     IInstallationRepository
 {
     private readonly IDbContextFactory<PrintManagementDbContext> _dbContextFactory;
 
-    public Installationrepository(IDbContextFactory<PrintManagementDbContext> dbContextFactory) 
+    public InstallationRepository(IDbContextFactory<PrintManagementDbContext> dbContextFactory) 
         : base(dbContextFactory.CreateDbContext())
     {
     }

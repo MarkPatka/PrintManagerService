@@ -13,7 +13,6 @@ namespace PrintManager.Infrastructure;
 public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services,
-        ConfigurationManager configuration,
         IConfiguration dbconfiguration)
     {
         services
@@ -24,7 +23,7 @@ public static class DependencyInjection
         return services;
     }
 
-    public static IServiceCollection AddPersistence(this IServiceCollection services, 
+    private static IServiceCollection AddPersistence(this IServiceCollection services, 
         IConfiguration configuration)
     {
         var type = configuration.GetSection("MSSQL");
@@ -36,6 +35,7 @@ public static class DependencyInjection
 
         return services;
     }
+    
     private static IServiceCollection AddServices(this IServiceCollection services) =>
         services.AddScoped<IInstallationService, InstallationService>();
 
@@ -43,5 +43,6 @@ public static class DependencyInjection
         servcies.AddScoped<IEmployeeRepository, EmployeeRepository>()
                 .AddScoped<IDepartmentRepository, DepartmentRepository>()
                 .AddScoped<IPrintDeviceRepository, PrintDeviceRepository>()
-                .AddScoped<IPrintSessionRepository, PrintSessionRepository>();
+                .AddScoped<IPrintSessionRepository, PrintSessionRepository>()
+                .AddScoped<IInstallationRepository, InstallationRepository>();
 }
