@@ -1,7 +1,7 @@
 ﻿namespace PrintManager.Contracts.PrintDevices;
 
 public record GetPrintingDeviceResponse(
-    Guid id,
+    string id,
     string innerName,
     string originalName,
     int serialNumber,

@@ -3,6 +3,11 @@ using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PrintManager.Application.Installations.Commands;
+using PrintManager.Application.Installations.Common;
+using PrintManager.Application.Installations.Queries;
+using PrintManager.Contracts.Installations;
+using PrintManager.Domain.InstallationAggregate.ValueObjects;
 
 namespace PrintManager.Api.Controllers;
 
@@ -35,7 +40,7 @@ public class InstallationsController : ApiController
     public async Task<IActionResult> GetInstallations()
     {
         var query = _mapper.Map<GetAllInstallationsQuery>(new GetAllInstallationsRequest());
-        ErrorOr<List<GetAllInstallationsResult>> installationResult = await _sender.Send(query);
+        ErrorOr<List<GetInstallationResult>> installationResult = await _sender.Send(query);
 
         if (installationResult.IsError)
         {
@@ -45,14 +50,14 @@ public class InstallationsController : ApiController
         }
 
         return installationResult.Match(
-            installationResult => Ok(_mapper.Map<List<GetAllInstallationsResponse>>(installationResult)),
+            installationResult => Ok(_mapper.Map<List<GetInstallationResponse>>(installationResult)),
             errors => Problem(errors));
     }
     [HttpGet("{id}")]
     public async Task<IActionResult> GetInstallation(string id)
     {
-        var query = _mapper.Map<GetInstallationByIdQuery>(new GetInstallationByIdRequest(id));
-        ErrorOr<List<GetInstallationByIdResult>> installationResult = await _sender.Send(query);
+        var query = _mapper.Map<GetInstallationQuery>(new GetInstallationRequest(id));
+        ErrorOr<GetInstallationResult> installationResult = await _sender.Send(query);
 
         if (installationResult.IsError)
         {
@@ -62,14 +67,14 @@ public class InstallationsController : ApiController
         }
 
         return installationResult.Match(
-            installationResult => Ok(_mapper.Map<List<GetInstallationByIdResponse>>(installationResult)),
+            installationResult => Ok(_mapper.Map<GetInstallationResponse>(installationResult)),
             errors => Problem(errors));
     }
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteInstallation(string id)
     {
-        var query = _mapper.Map<DeleteInstallationByIdQuery>(new DeleteInstallationByIdRequest(id));
-        ErrorOr<List<DeleteInstallationByIdResult>> deleteInstallationResult = await _sender.Send(query);
+        var query = _mapper.Map<DeleteInstallationCommand>(new DeleteInstallationRequest(id));
+        ErrorOr<DeleteInstallationResult> deleteInstallationResult = await _sender.Send(query);
 
         if (deleteInstallationResult.IsError)
         {
@@ -79,7 +84,7 @@ public class InstallationsController : ApiController
         }
 
         return deleteInstallationResult.Match(
-            deleteInstallationResult => Ok(_mapper.Map<List<DeleteInstallationByIdResponse>>(deleteInstallationResult)),
+            deleteInstallationResult => Ok(_mapper.Map<DeleteInstallationResponse>(deleteInstallationResult)),
             errors => Problem(errors));
     }
 }

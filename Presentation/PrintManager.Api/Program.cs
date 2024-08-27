@@ -8,10 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
         .AddPresentation()
         .AddApplication()
         .AddInfrastructure(
-            builder.Configuration,
             builder.Configuration.GetSection("Database"));
-
-
 }
 
 var app = builder.Build();

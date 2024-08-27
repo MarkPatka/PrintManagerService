@@ -1,7 +1,9 @@
-﻿using MapsterMapper;
+﻿using ErrorOr;
+using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PrintManager.Application.Departments.Common;
 using PrintManager.Application.Departments.Queries;
 using PrintManager.Contracts.Departments;
 using PrintManager.Contracts.PrintDevices;
@@ -29,7 +31,19 @@ public class DepartmentsController : ApiController
     {
         var query = _mapper.Map<GetAllDepartmentsQuery>(
             new GetDepartmentsRequest());
-        return Ok();
+
+        ErrorOr<List<GetAllDepartmentsResult>> departments = await _sender.Send(query);
+
+        if (departments.IsError)
+        {
+            return Problem(
+                statusCode: StatusCodes.Status400BadRequest,
+                title: departments.FirstError.Description);
+        }
+
+        return departments.Match(
+            departments => Ok(_mapper.Map<List<GetDepartmentsResponse>>(departments)),
+            errors => Problem(errors));
     }
 
 }
