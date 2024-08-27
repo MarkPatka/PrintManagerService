@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErrorOr;
+using MediatR;
+using PrintManager.Application.Departments.Common;
+using PrintManager.Application.Employees.Common;
 
-namespace PrintManager.Application.Employees.Queries
+namespace PrintManager.Application.Employees.Queries;
+
+public class GetAllEmployeesQueryHandler
+    : IRequestHandler<GetAllEmployeesQuery, ErrorOr<List<GetAllEmployeesResult>>>
 {
-    internal class GetAllEmployeesQueryHandler
+    public GetAllEmployeesQueryHandler()
     {
+    }
+
+    public Task<ErrorOr<List<GetAllEmployeesResult>>> Handle(GetAllEmployeesQuery request, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
     }
 }

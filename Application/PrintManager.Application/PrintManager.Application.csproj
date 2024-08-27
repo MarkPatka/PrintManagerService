@@ -1,14 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Domain\PrintManager.Domain\PrintManager.Domain.csproj" />
+    <Compile Remove="Departments\Commands\**" />
+    <Compile Remove="Employees\Commands\**" />
+    <Compile Remove="PrintDevices\Commands\**" />
+    <EmbeddedResource Remove="Departments\Commands\**" />
+    <EmbeddedResource Remove="Employees\Commands\**" />
+    <EmbeddedResource Remove="PrintDevices\Commands\**" />
+    <None Remove="Departments\Commands\**" />
+    <None Remove="Employees\Commands\**" />
+    <None Remove="PrintDevices\Commands\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Interfaces\Services\" />
-    <Folder Include="Departments\Commands\" />
-    <Folder Include="Employees\Commands\" />
-    <Folder Include="PrintDevices\Commands\" />
+    <ProjectReference Include="..\..\Domain\PrintManager.Domain\PrintManager.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErrorOr;
+using MediatR;
+using PrintManager.Application.PrintDevices.Common;
 
-namespace PrintManager.Application.Departments.Queries
+namespace PrintManager.Application.Departments.Queries;
+
+public class GetAllDevicesQueryHandler
+    : IRequestHandler<GetAllDevicesQuery, ErrorOr<List<GetAllDevicesResult>>>
 {
-    internal class GetAllDevicesQueryHandler
+    public GetAllDevicesQueryHandler()
     {
+        
+    }
+    public Task<ErrorOr<List<GetAllDevicesResult>>> Handle(GetAllDevicesQuery request, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
     }
 }

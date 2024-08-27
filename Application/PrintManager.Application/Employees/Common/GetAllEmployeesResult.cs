@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace PrintManager.Application.Employees.Common;
 
-namespace PrintManager.Application.Employees.Common
-{
-    internal class GetAllEmployeesResult
-    {
-    }
-}
+public record GetAllEmployeesResult(
+    string id,
+    string name,
+    string jobTitle);

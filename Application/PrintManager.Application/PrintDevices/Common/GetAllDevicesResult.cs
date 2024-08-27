@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace PrintManager.Application.PrintDevices.Common;
 
-namespace PrintManager.Application.PrintDevices.Common
-{
-    internal class GetAllDevicesResult
-    {
-    }
-}
+public record GetAllDevicesResult(
+    string id,
+    string innerName,
+    string originalName,
+    int serialNumber,
+    int isDefault,
+    string connectionType,
+    List<string>? macs);

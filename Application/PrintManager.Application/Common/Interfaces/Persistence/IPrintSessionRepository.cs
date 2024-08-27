@@ -1,5 +1,5 @@
-﻿using PrintManager.Domain.PrintSessionAggregate;
-using PrintManager.Domain.PrintSessionAggregate.ValueObjects;
+﻿using PrintManager.Domain.DepartmentAggregate.Entities;
+using PrintManager.Domain.DepartmentAggregate.ValueObjects;
 
 namespace PrintManager.Application.Common.Interfaces.Persistence;
 

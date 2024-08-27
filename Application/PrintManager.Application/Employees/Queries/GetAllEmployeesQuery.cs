@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErrorOr;
+using MediatR;
+using PrintManager.Application.Employees.Common;
+using PrintManager.Domain.DepartmentAggregate.Entities;
 
-namespace PrintManager.Application.Employees.Queries
+namespace PrintManager.Application.Employees.Queries;
+
+public record GetAllEmployeesQuery()
+    : IRequest<ErrorOr<List<GetAllEmployeesResult>>>
 {
-    internal class GetAllEmployeesQuery
-    {
-    }
 }

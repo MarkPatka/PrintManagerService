@@ -1,8 +1,9 @@
-﻿using PrintManager.Domain.PrintDeviceAggregate;
-using PrintManager.Domain.PrintDeviceAggregate.ValueObjects;
+﻿using PrintManager.Domain.DepartmentAggregate.Entities;
+using PrintManager.Domain.DepartmentAggregate.ValueObjects;
 
 namespace PrintManager.Application.Common.Interfaces.Persistence;
 
-public interface IPrintDeviceRepository : IGenericRepository<PrintDevice, PrintDeviceId>
+public interface IPrintDeviceRepository 
+    : IGenericRepository<DepartmentPrintDevice, DepartmentPrintDeviceId>
 {
 }

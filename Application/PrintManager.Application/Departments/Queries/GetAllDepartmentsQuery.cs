@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErrorOr;
+using MediatR;
+using PrintManager.Application.Departments.Common;
 
-namespace PrintManager.Application.Departments.Queries
-{
-    internal class GetAllDepartmentsQuery
-    {
-    }
-}
+namespace PrintManager.Application.Departments.Queries;
+
+public record GetAllDepartmentsQuery() 
+    : IRequest<ErrorOr<List<GetAllDepartmentsResult>>>;
