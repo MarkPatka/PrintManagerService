@@ -1,19 +1,35 @@
 ﻿using ErrorOr;
 using MediatR;
-using PrintManager.Application.Departments.Common;
+using PrintManager.Application.Common.Interfaces.Persistence;
 using PrintManager.Application.Employees.Common;
+using PrintManager.Domain.DepartmentAggregate.ValueObjects;
 
 namespace PrintManager.Application.Employees.Queries;
 
 public class GetAllEmployeesQueryHandler
     : IRequestHandler<GetAllEmployeesQuery, ErrorOr<List<GetAllEmployeesResult>>>
 {
-    public GetAllEmployeesQueryHandler()
+    private readonly IDepartmentRepository _department;
+
+    public GetAllEmployeesQueryHandler(IDepartmentRepository department)
     {
+        _department = department;
     }
 
-    public Task<ErrorOr<List<GetAllEmployeesResult>>> Handle(GetAllEmployeesQuery request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<List<GetAllEmployeesResult>>> Handle(
+        GetAllEmployeesQuery request,
+        CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var dept = await _department.GetByIdAsync(
+            DepartmentId.CreateFrom(Guid.Parse(request.departmentId)));
+
+        var result = dept.Employees.Select(e => 
+            new GetAllEmployeesResult(
+                id: e.Id.ToString(),
+                name: e.Name,
+                jobTitle: e.JobTitle))
+            .ToList();
+
+        return result;
     }
 }

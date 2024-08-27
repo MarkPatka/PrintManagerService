@@ -4,8 +4,8 @@ public record GetAllDepartmentsResult(
     string id,
     string name,
     string address,
-    GetAllDepartmentDevicesResult departmentDevices,
-    GetAllDepartmentEmployeesResult departmentEmployees);
+    GetAllDepartmentDevicesResult[] departmentDevices,
+    GetAllDepartmentEmployeesResult[] departmentEmployees);
 
 public record GetAllDepartmentEmployeesResult(
     string id,
