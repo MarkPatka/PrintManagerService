@@ -3,8 +3,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using PrintManager.Application.Common.Interfaces.Persistence;
+using PrintManager.Application.Common.Interfaces.Services;
 using PrintManager.Infrastructure.Persistence.DBContexts;
 using PrintManager.Infrastructure.Persistence.Repositories;
+using PrintManager.Infrastructure.Services;
 
 namespace PrintManager.Infrastructure;
 
@@ -14,9 +16,10 @@ public static class DependencyInjection
         ConfigurationManager configuration,
         IConfiguration dbconfiguration)
     {
-        services.
-            AddRepositories().
-            AddPersistence(dbconfiguration);
+        services
+            .AddRepositories()
+            .AddPersistence(dbconfiguration)
+            .AddServices();
 
         return services;
     }
@@ -33,10 +36,11 @@ public static class DependencyInjection
 
         return services;
     }
+    private static IServiceCollection AddServices(this IServiceCollection services) =>
+        services.AddScoped<IInstallationService, InstallationService>();
 
     private static IServiceCollection AddRepositories(this IServiceCollection servcies) =>
         servcies.AddScoped<IEmployeeRepository, EmployeeRepository>()
-                .AddScoped<IEmployeeRepository, EmployeeRepository>()
                 .AddScoped<IDepartmentRepository, DepartmentRepository>()
                 .AddScoped<IPrintDeviceRepository, PrintDeviceRepository>()
                 .AddScoped<IPrintSessionRepository, PrintSessionRepository>();

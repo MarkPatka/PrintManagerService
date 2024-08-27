@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PrintManager.Application.Common.Interfaces.Persistence;
+using PrintManager.Domain.DepartmentAggregate.Entities;
+using PrintManager.Domain.DepartmentAggregate.ValueObjects;
 using PrintManager.Infrastructure.Persistence.DBContexts;
-using PrintManager.Domain.PrintDeviceAggregate;
-using PrintManager.Domain.PrintDeviceAggregate.ValueObjects;
+
 
 namespace PrintManager.Infrastructure.Persistence.Repositories;
 
 public class PrintDeviceRepository 
-    : GenericRepository<PrintDevice, PrintDeviceId>,
+    : GenericRepository<DepartmentPrintDevice, DepartmentPrintDeviceId>,
     IPrintDeviceRepository
 {
     private readonly IDbContextFactory<PrintManagementDbContext> _dbContextFactory;

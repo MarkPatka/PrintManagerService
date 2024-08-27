@@ -2,22 +2,15 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using PrintManager.Domain.DepartmentAggregate;
 using PrintManager.Domain.DepartmentAggregate.Entities;
-using PrintManager.Domain.PrintDeviceAggregate;
-using PrintManager.Domain.PrintSessionAggregate;
+using PrintManager.Infrastructure.Persistence.Configurations;
 
 namespace PrintManager.Infrastructure.Persistence.DBContexts;
 
 public class PrintManagementDbContext : DbContext
 {
-    public DbSet<Department> Departments { get; set; } = null!;
-    public DbSet<Employee> Employees { get; set; } = null!;
-    public DbSet<PrintDevice> PrintDevices { get; set; } = null!;
-    public DbSet<PrintSession> Sessions{ get; set; } = null!;
-
     public PrintManagementDbContext(DbContextOptions<PrintManagementDbContext> options) 
         : base(options)
     {
-        Database.EnsureCreated();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,7 +22,7 @@ public class PrintManagementDbContext : DbContext
             .ForEach(p => p.ValueGenerated = ValueGenerated.Never);
 
         modelBuilder
-            .ApplyConfigurationsFromAssembly(typeof(PrintManagementDbContext).Assembly);
+            .ApplyConfigurationsFromAssembly(typeof(DepartmentConfigurations).Assembly);
 
         base.OnModelCreating(modelBuilder);
     }

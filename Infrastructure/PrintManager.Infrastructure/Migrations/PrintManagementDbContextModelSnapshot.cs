@@ -42,54 +42,17 @@ namespace PrintManager.Infrastructure.Migrations
                     b.ToTable("Departments", (string)null);
                 });
 
-            modelBuilder.Entity("PrintManager.Domain.PrintDeviceAggregate.PrintDevice", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ConnectionType")
-                        .HasColumnType("tinyint");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PrintingDevices", (string)null);
-                });
-
-            modelBuilder.Entity("PrintManager.Domain.PrintSessionAggregate.PrintSession", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("SessionName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("SessionStatus")
-                        .HasColumnType("tinyint");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Sessions", (string)null);
-                });
-
             modelBuilder.Entity("PrintManager.Domain.DepartmentAggregate.Department", b =>
                 {
                     b.OwnsMany("PrintManager.Domain.DepartmentAggregate.Entities.DepartmentPrintDevice", "PrintDevices", b1 =>
                         {
                             b1.Property<Guid>("Id")
-                                .HasColumnType("uniqueidentifier")
-                                .HasColumnName("DepartmentDeviceId");
-
-                            b1.Property<Guid>("DepartmentId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<Guid>("DeviceId")
+                            b1.Property<int>("ConnectionType")
+                                .HasColumnType("tinyint");
+
+                            b1.Property<Guid>("DepartmentId")
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("InnerName")
@@ -102,19 +65,48 @@ namespace PrintManager.Infrastructure.Migrations
                                 .HasColumnType("bit")
                                 .HasDefaultValue(false);
 
+                            b1.Property<string>("OriginalName")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("nvarchar(100)");
+
                             b1.Property<byte>("SerialNumber")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("tinyint")
                                 .HasDefaultValue((byte)1);
 
-                            b1.HasKey("Id", "DepartmentId");
+                            b1.HasKey("Id");
 
                             b1.HasIndex("DepartmentId");
 
-                            b1.ToTable("InnerDepartmentDevices", (string)null);
+                            b1.ToTable("DepartmentDevices", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("DepartmentId");
+
+                            b1.OwnsMany("PrintManager.Domain.DepartmentAggregate.Entities.MAC", "MACs", b2 =>
+                                {
+                                    b2.Property<Guid>("Id")
+                                        .HasColumnType("uniqueidentifier");
+
+                                    b2.Property<Guid>("DepartmentPrintDeviceId")
+                                        .HasColumnType("uniqueidentifier");
+
+                                    b2.Property<byte[]>("MacAddress")
+                                        .IsRequired()
+                                        .HasColumnType("binary(6)");
+
+                                    b2.HasKey("Id");
+
+                                    b2.HasIndex("DepartmentPrintDeviceId");
+
+                                    b2.ToTable("MACAddresses", (string)null);
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("DepartmentPrintDeviceId");
+                                });
+
+                            b1.Navigation("MACs");
                         });
 
                     b.OwnsMany("PrintManager.Domain.DepartmentAggregate.Entities.Employee", "Employees", b1 =>
@@ -146,36 +138,65 @@ namespace PrintManager.Infrastructure.Migrations
                                 .HasForeignKey("DepartmentId");
                         });
 
-                    b.Navigation("Employees");
-
-                    b.Navigation("PrintDevices");
-                });
-
-            modelBuilder.Entity("PrintManager.Domain.PrintDeviceAggregate.PrintDevice", b =>
-                {
-                    b.OwnsMany("PrintManager.Domain.PrintDeviceAggregate.Entities.MAC", "MACs", b1 =>
+                    b.OwnsMany("PrintManager.Domain.DepartmentAggregate.Entities.PrintSession", "PrintSessions", b1 =>
                         {
                             b1.Property<Guid>("Id")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<byte[]>("MacAddress")
-                                .IsRequired()
-                                .HasColumnType("binary(6)");
-
-                            b1.Property<Guid>("PrintDeviceId")
+                            b1.Property<Guid>("DepartmentId")
                                 .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("SessionName")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("nvarchar(100)");
+
+                            b1.Property<int>("SessionStatus")
+                                .HasColumnType("tinyint");
 
                             b1.HasKey("Id");
 
-                            b1.HasIndex("PrintDeviceId");
+                            b1.HasIndex("DepartmentId");
 
-                            b1.ToTable("MACAddresses", (string)null);
+                            b1.ToTable("Sessions", (string)null);
 
                             b1.WithOwner()
-                                .HasForeignKey("PrintDeviceId");
+                                .HasForeignKey("DepartmentId");
                         });
 
-                    b.Navigation("MACs");
+                    b.OwnsMany("PrintManager.Domain.InstallationAggregate.Installation", "Installations", b1 =>
+                        {
+                            b1.Property<Guid>("Id")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<Guid>("DepartmentId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<Guid>("DepartmentPrintDeviceId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("Name")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("nvarchar(100)");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("DepartmentId");
+
+                            b1.ToTable("Installation", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("DepartmentId");
+                        });
+
+                    b.Navigation("Employees");
+
+                    b.Navigation("Installations");
+
+                    b.Navigation("PrintDevices");
+
+                    b.Navigation("PrintSessions");
                 });
 #pragma warning restore 612, 618
         }
