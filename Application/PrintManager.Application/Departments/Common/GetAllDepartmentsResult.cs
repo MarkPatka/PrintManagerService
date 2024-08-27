@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace PrintManager.Application.Departments.Common;
+﻿namespace PrintManager.Application.Departments.Common;
 
 public record GetAllDepartmentsResult(
     string id,

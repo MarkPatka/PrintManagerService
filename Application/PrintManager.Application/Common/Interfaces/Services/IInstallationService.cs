@@ -2,4 +2,5 @@
 
 public interface IInstallationService
 {
+    public Task InstallAsync();
 }
