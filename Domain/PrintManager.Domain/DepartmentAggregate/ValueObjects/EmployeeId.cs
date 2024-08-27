@@ -20,4 +20,5 @@ public sealed class EmployeeId : ValueObject
     {
         yield return Value;
     }
+    public override string ToString() => Value.ToString();
 }

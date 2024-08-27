@@ -19,4 +19,6 @@ public sealed class DepartmentId : ValueObject
     {
         yield return Value;
     }
+
+    public override string ToString() => Value.ToString();
 }

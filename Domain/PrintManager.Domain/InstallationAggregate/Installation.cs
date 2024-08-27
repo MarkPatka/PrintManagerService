@@ -7,6 +7,7 @@ namespace PrintManager.Domain.InstallationAggregate;
 public sealed class Installation : AggregateRoot<InstallationId>
 {
     public string Name { get; }
+
     public DepartmentPrintDeviceId DepartmentPrintDeviceId { get; }
 
 #pragma warning disable CS8618
