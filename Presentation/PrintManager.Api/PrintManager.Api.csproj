@@ -25,9 +25,4 @@
     <ProjectReference Include="..\..\Infrastructure\PrintManager.Infrastructure\PrintManager.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Common\Errors\" />
-    <Folder Include="Common\Http\" />
-  </ItemGroup>
-
 </Project>

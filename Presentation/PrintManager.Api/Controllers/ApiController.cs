@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ErrorOr;
 using Microsoft.AspNetCore.Authorization;
+using PrintManager.Api.Common.Http;
 
 namespace PrintManager.Api.Controllers;
 
@@ -9,9 +10,9 @@ namespace PrintManager.Api.Controllers;
 [AllowAnonymous]
 public class ApiController : ControllerBase
 {
-    protected ActionResult Problem(List<Error> errors)
+    protected IActionResult Problem(List<Error> errors)
     {
-        if (errors.Count is 0)
+        if (errors.Count == 0)
         {
             return Problem();
         }
@@ -21,10 +22,12 @@ public class ApiController : ControllerBase
             return ValidationProblem(errors);
         }
 
+        HttpContext.Items[HttpContextItemKeys.Errors] = errors;
+
         return Problem(errors[0]);
     }
 
-    private ObjectResult Problem(Error error)
+    private IActionResult Problem(Error error)
     {
         var statusCode = error.Type switch
         {
@@ -38,7 +41,7 @@ public class ApiController : ControllerBase
         return Problem(statusCode: statusCode, title: error.Description);
     }
 
-    private ActionResult ValidationProblem(List<Error> errors)
+    private IActionResult ValidationProblem(List<Error> errors)
     {
         var modelStateDictionary = new ModelStateDictionary();
 

@@ -1,3 +1,5 @@
 ﻿namespace PrintManager.Contracts.PrintDevices;
 
-public record GetPrintingDevicesRequest();
+public record GetPrintingDevicesRequest(
+    string departmentId, 
+    int? connectionTypeCode = null);

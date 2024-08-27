@@ -9,7 +9,7 @@ namespace PrintManager.Api.Controllers;
 
 [ApiController]
 [AllowAnonymous]
-[Route("devices")]
+[Route("departments/{departmentId}/devices")]
 public class PrintingDevicesController : ApiController
 {
     private readonly IMapper _mapper;
@@ -21,12 +21,12 @@ public class PrintingDevicesController : ApiController
         _mapper = mapper;       
     }
 
-    [HttpGet("getall")]
-    public async Task<IActionResult> ListDevices()
+    [HttpGet("{connectionType}")]
+    public async Task<IActionResult> ListDevices(string departmentId, int? connectionType = null)
     {
-        var query = _mapper.Map<GetAllDevicesQuery>(new GetPrintingDevicesRequest());
+        var query = _mapper.Map<GetAllDevicesQuery>(
+            new GetPrintingDevicesRequest(departmentId, connectionType));
+
         return Ok(query);
     }
-
-
 }
