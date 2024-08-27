@@ -1,20 +1,19 @@
 ﻿using PrintManager.Domain.Common.Models;
 
-namespace PrintManager.Domain.PrintDeviceAggregate.ValueObjects;
+namespace PrintManager.Domain.DepartmentAggregate.ValueObjects;
 
-public sealed class PrintDeviceId : ValueObject
+public sealed class PrintSessionId : ValueObject
 {
     public Guid Value { get; private set; }
 
-    private PrintDeviceId(Guid value)
+    private PrintSessionId(Guid value)
     {
         Value = value;
     }
 
-    public static PrintDeviceId CreateFrom(Guid id) =>
+    public static PrintSessionId CreateFrom(Guid id) =>
         new(id);
-
-    public static PrintDeviceId CreateUnicId() =>
+    public static PrintSessionId CreateUnicId() =>
         new(Guid.NewGuid());
 
     public override IEnumerable<object> GetEqualityComponents()

@@ -1,6 +1,6 @@
 ﻿using PrintManager.Domain.Common.Models;
 
-namespace PrintManager.Domain.PrintDeviceAggregate.ValueObjects;
+namespace PrintManager.Domain.DepartmentAggregate.ValueObjects;
 
 public sealed class MACId : ValueObject
 {

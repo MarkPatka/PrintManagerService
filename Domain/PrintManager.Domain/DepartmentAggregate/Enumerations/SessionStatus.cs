@@ -1,6 +1,6 @@
 ﻿using PrintManager.Domain.Common.Models;
 
-namespace PrintManager.Domain.PrintSessionAggregate.Enumerations;
+namespace PrintManager.Domain.DepartmentAggregate.Enumerations;
 
 public class SessionStatus : Enumeration
 {
@@ -17,9 +17,9 @@ public class SessionStatus : Enumeration
     {
         return code switch
         {
-            1 => SessionStatus.SUCCESS,
-            2 => SessionStatus.IN_PROGRESS,
-            3 => SessionStatus.FAILURE,
+            1 => SUCCESS,
+            2 => IN_PROGRESS,
+            3 => FAILURE,
             _ => throw new Exception($"Unknown status code: {code}")
         };
     }

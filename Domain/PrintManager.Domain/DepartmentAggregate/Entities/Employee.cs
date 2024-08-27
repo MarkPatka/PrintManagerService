@@ -8,8 +8,6 @@ public sealed class Employee : Entity<EmployeeId>
     public string Name { get; }
     public string JobTitle { get; }
 
-    public DepartmentId DepartmentId { get; private set; }
-
 #pragma warning disable CS8618
     private Employee() { }
 #pragma warning disable CS8618

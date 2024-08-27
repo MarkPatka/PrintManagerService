@@ -1,25 +1,20 @@
 ﻿using PrintManager.Domain.Common.Models;
-using PrintManager.Domain.DepartmentAggregate.Entities;
-using PrintManager.Domain.PrintSessionAggregate.Enumerations;
-using PrintManager.Domain.PrintSessionAggregate.ValueObjects;
+using PrintManager.Domain.DepartmentAggregate.Enumerations;
+using PrintManager.Domain.DepartmentAggregate.ValueObjects;
 
-namespace PrintManager.Domain.PrintSessionAggregate;
+namespace PrintManager.Domain.DepartmentAggregate.Entities;
 
 public sealed class PrintSession : AggregateRoot<PrintSessionId>
 {
     public string SessionName { get; }
     public int Pages { get; }
-
     public SessionStatus SessionStatus { get; }
-
-    //public DepartmentPrintDevice PrintDevice { get; private set; }
-    //public Employee PrintingEmployee { get; private set; }
 
 #pragma warning disable CS8618
     private PrintSession() { }
 #pragma warning disable CS8618
 
-    private PrintSession(PrintSessionId id, string name, int pages, SessionStatus status) 
+    private PrintSession(PrintSessionId id, string name, int pages, SessionStatus status)
         : base(id)
     {
         SessionName = name;
